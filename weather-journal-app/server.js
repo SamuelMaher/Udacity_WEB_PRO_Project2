@@ -18,11 +18,34 @@ app.use(cors());
 app.use(express.static('website'));
 
 // Setup Server
-const port = 8080;
+const port = 3000;
 
 // TODO-Spin up the server
 const server = app.listen(port, listening);
 function listening(){
     // console.log(server);
     console.log(`running on localhost: ${port}`);
+};
+
+// GET route
+app.get('/', sendData);
+
+function sendData (request, response) {
+  response.send(projectData);
+};
+
+// POST route
+app.post('/', callBack);
+
+function callBack(req,res){
+  res.send('POST received');
+}
+
+// POST an zip
+const data = [];
+
+app.post('/', addzip);
+
+function addzip (req,res){
+    data.push(req.body);
 };
